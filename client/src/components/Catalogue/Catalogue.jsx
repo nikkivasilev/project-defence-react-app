@@ -1,4 +1,4 @@
-import CatalogueItem from "./CatalogueItem"
+import CatalogueItem from "../CatalogueItem/CatalogueItem"
 
 export default function Catalogue() {
     return (
