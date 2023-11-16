@@ -26,7 +26,30 @@ export default function ProductDetails() {
 
                 </div>
             </div>
+
         </div>
-    </section>
+        <div class="commentswrapper">
+            <form class="actionBtn" method="post" action="{% url 'create comment product' pk=product.pk %}">
+                <label class="commentText">
+                    {/* {{ comment_form.text }} */}
+                    <button class="register" type="submit">Post</button>
+                </label>
+            </form>
+            {/* {% if product_comments %} */}
+                {/* {% for comment in product_comments %} */}
+                    <div class="comment">Nikola: super qki obuwki
+                        {/* - {{ comment.publication_date_and_time }} */}
+                        {/* {% if comment.user == request.user %} */}
+                            <div class="actionBtnDeleteComment">
+                            <a href="{% url 'delete comment product' pk=comment.pk %}">DELETE</a>
+                        </div>
+                        {/* {% endif %} */}
+                    </div>
+                {/* {% endfor %} */}
+            {/* {% else %} */}
+                <h1 class="index-header">No one has commented yet. Be the first one!</h1>
+            {/* {% endif %} */}
+        </div>
+    </section>  
     )
 }

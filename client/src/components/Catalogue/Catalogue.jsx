@@ -1,16 +1,19 @@
 import CatalogueItem from "../CatalogueItem/CatalogueItem"
 
-export default function Catalogue() {
+export default function Catalogue(products) {
     return (
         <section id="catalogPage">
-        {/* {% if object_list %} */}
-            {/* {% for object in object_list %} */}
-                <CatalogueItem />
+         {products.products ? ( 
+            <>  
 
-            {/* {% endfor %} */}
-        {/* {% else %} */}
+                {products.products.map(x => <CatalogueItem key={x._id} {...x}/>)}
+            </>
+        ) :  
+            (
+                <>
             <p>No Products in Catalog!</p>
-        {/* {% endif %} */}
-    </section>
+            </>
+            ) } 
+        </section>
     )
 }

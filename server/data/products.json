@@ -1,0 +1,14 @@
+{
+    "003a3669-2a60-4d93-b626-eace8782d768": {
+        "name": "Chorapi",
+        "price": 20,
+        "description": "Very cool",
+        "_id": "003a3669-2a60-4d93-b626-eace8782d768"
+    },
+    "457a2c06-b8d8-4468-8c05-a1b88309283e": {
+        "name": "Chehli",
+        "price": 20,
+        "description": "Very cool",
+        "_id": "457a2c06-b8d8-4468-8c05-a1b88309283e"
+    }
+}

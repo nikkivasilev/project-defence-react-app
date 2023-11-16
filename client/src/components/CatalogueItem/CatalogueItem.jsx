@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+
 
 export default function CatalogueItem() {
     return (
@@ -10,7 +11,7 @@ export default function CatalogueItem() {
                             <p className="price">Price: 12 BGN</p>
                         </div>
                         <div className="btn-group">
-                            <Link to="">Details</Link>
+                            <Link to="/product/details/1">Details</Link>
                         </div>
                     </div>
         </div>
