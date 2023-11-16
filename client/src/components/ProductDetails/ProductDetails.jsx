@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 
-export default function ProductDetails(props) {
-    console.log(props);
+export default function ProductDetails(products) {
+    const location = useLocation()
+    const productId = location.pathname.split('/')[3]
+    // hopefully not a permanent fix but it will do the job for now :>
+
+    const currentProduct = products.products.find(x => x._id === productId)
+    console.log(currentProduct);
     return (
         <section id="detailsPage">
         <div className="Productwrapper">
@@ -11,12 +17,10 @@ export default function ProductDetails(props) {
             </div>
             <div className="albumInfo">
                 <div className="albumText">
-                    <h1 className="albumText">Name: Qki obuwki </h1>
-                    <h1 className="albumText">Price:  122 BNG</h1>
+                    <h1 className="albumText">Name:  </h1>
+                    <h1 className="albumText">Price:   BNG</h1>
                     {/* {% if object.description %} */}
-                        <p className="albumText">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Ipsum aliquid totam dignissimos! Nemo, porro pariatur saepe facere iste aliquam fugiat 
-                        enim reiciendis dolorum quia delectus, vitae quo temporibus labore excepturi?</p>
+                        <p className="albumText">?</p>
                     {/* {% endif %} */}
                 </div>
                 <div className="actionBtn">
