@@ -12,16 +12,18 @@ import ProductDetails from './components/ProductDetails/ProductDetails'
 const baseUrl = 'http://localhost:3030/jsonstore'
 
 function App() {
-  const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    fetch(`${baseUrl}/products`)
-      .then(res => res.json())
-      .then(result => {
+    useEffect(() => {
+        fetch(`${baseUrl}/products`)
+            .then(res => res.json())
+            .then(result => {
         result = Object.values(result)
         setProducts(result)
-      })
+          })
     }, [])
+
+
   return (
     <>
       <Header />

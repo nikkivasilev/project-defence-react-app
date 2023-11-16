@@ -4,7 +4,11 @@ export default function CatalogueItem(props) {
     const productUrl = `/product/details/${props._id}`
     return (
         <div className="card-box">
+                    {props.imageUrl ? 
+                    <img className="ProductImg" src={props.imageUrl} alt="product Image"/>
+                    :
                     <img className="ProductImg" src="/images/no-image-found.jpg" alt="product Image"/>
+                }
                     <div>
                         <div className="text-center ">
                             <p className="name">Name: {props.name}</p>
