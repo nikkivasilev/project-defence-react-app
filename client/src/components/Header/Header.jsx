@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <header>
         <nav>
-            <img src="images/contrast.png" alt="sun"/>
+            <img src="/images/contrast.png" alt="sun"/>
             <Link to="/">HOME</Link>
             <ul>
                 {/* // {% if request.user.is_authenticated %} */}
