@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export default function CatalogueItem() {
     return (
         <div className="card-box">
-                    <img className="ProductImg" src="{{ object.Image.url }}" alt="product Image"/>
+                    <img className="ProductImg" src="/images/no-image-found.jpg" alt="product Image"/>
                     <div>
                         <div className="text-center ">
                             <p className="name">Name: Ime Na Product</p>
