@@ -5,19 +5,17 @@ export default function Header() {
         <header>
         <nav>
             <img src="images/contrast.png" alt="sun"/>
-            <a to="/">HOME</a>
+            <Link to="/">HOME</Link>
             <ul>
                 {/* // {% if request.user.is_authenticated %} */}
-                    <li><Link to="/">CATALOGUE</Link></li>
-                    <li><Link to="/">PROFILE</Link></li>
+                    <li><Link to="/catalogue">CATALOGUE</Link></li>
+                    <li><Link to="/">CREATE PRODUCT</Link></li>
+                    <li><Link to="/user/details">PROFILE</Link></li>
                     <li><Link to="/">LOG OUT</Link></li>
 
                 {/* // {% else %} */}
                     <li><Link to="/">REGISTER</Link></li>
                     <li><Link to="/">LOG IN</Link></li>
-                {/* // {% endif %} */}
-                {/* // {% if request.user.is_staff %} */}
-                    <li><Link to="/">STAFF</Link></li>
                 {/* // {% endif %} */}
 
             </ul>
