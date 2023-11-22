@@ -1,25 +1,47 @@
-import { Link } from "react-router-dom"
+import { useContext } from 'react';
+import { Link } from "react-router-dom";
+import AuthContext from '../../contexts/authContext'
 
 export default function Header() {
-    return (
-        <header>
-        <nav>
-            <img src="/images/contrast.png" alt="sun"/>
-            <Link to="/">HOME</Link>
-            <ul>
-                {/* // {% if request.user.is_authenticated %} */}
-                    <li><Link to="/catalogue">CATALOGUE</Link></li>
-                    <li><Link to="/">CREATE PRODUCT</Link></li>
-                    <li><Link to="/user/details">PROFILE</Link></li>
-                    <li><Link to="/">LOG OUT</Link></li>
+    const {
+        isAuthenticated,
+        username,
+    } = useContext(AuthContext);
 
-                {/* // {% else %} */}
-                    <li><Link to="/">REGISTER</Link></li>
-                    <li><Link to="/">LOG IN</Link></li>
-                {/* // {% endif %} */}
-
-            </ul>
-        </nav>
+  return (
+    <header>
+      <nav>
+        <img src="/images/contrast.png" alt="sun" />
+        <Link to="/">HOME</Link>
+        <ul>
+          {isAuthenticated && (
+            <>
+              <li>
+                <Link to="/catalogue">CATALOGUE</Link>
+              </li>
+              <li>
+                <Link to="/">CREATE PRODUCT</Link>
+              </li>
+              <li>
+                <Link to="/user/details">PROFILE</Link>
+              </li>
+              <li>
+                <Link to="/logout">LOG OUT</Link>
+              </li>
+            </>
+          )}
+          {!isAuthenticated && (
+            <>
+              <li>
+                <Link to="/register">REGISTER</Link>
+              </li>
+              <li>
+                <Link to="/login">LOG IN</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
     </header>
-    )
+  );
 }
