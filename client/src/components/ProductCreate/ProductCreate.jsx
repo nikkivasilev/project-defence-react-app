@@ -39,7 +39,7 @@ export default function ProductCreate() {
                     <input type="text" id="image-url" name="image-url" placeholder="Enter product Image Url..." />
 
                     <label htmlFor="price">Price:</label>
-                    <input type="number" id="price" name="price" />
+                    <input type="number" id="price" name="price" placeholder='Enter price'/>
 
                     <label htmlFor="description">Description:</label>
                     <input type="text" id="description" name="description" placeholder="Enter product description..." />

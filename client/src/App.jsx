@@ -41,13 +41,13 @@ function App() {
       <Routes>
         <Route path={Path.Home} element={<Home />}/>
         <Route path='/catalogue' element={<Catalogue products={products}/>}/>
-        <Route path='user/details' element={<UserDetails />} />
         <Route path='product/details/:productId' element={<ProductDetails products={products}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<AuthGuard />}>
                 <Route path="/product/create" element={<ProductCreate />} />
                 {/* <Route path={Path.ProductEdit} element={<ProductEdit />} /> */}
+                <Route path='user/details' element={<UserDetails />} />
                 <Route path={Path.Logout} element={<Logout />} />
         </Route>
       </Routes>
