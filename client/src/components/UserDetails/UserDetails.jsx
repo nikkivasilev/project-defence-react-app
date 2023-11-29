@@ -1,28 +1,26 @@
 export default function UserDetails() {
     return (
-        <div class="wrapper">
+        <div className="wrapper">
         {/* {% if user.profile_picture %} */}
-            {/* <div class="profilePage">
+            {/* <div className="profilePage">
                 <img src="{{ user.profile_picture.url }}"
                      alt="Profile Image"/>
             </div> */}
         {/* {% else %} */}
-            <div class="profilePage">
+            <div className="profilePage">
                 <img src="/images/blank-profile-picture-973460_1280.jpeg"
                      alt="Profile Image"/>
             </div>
         {/* {% endif %} */}
-        <div class="profileText">
+        <div className="profileText">
             <h1>Username: goshoo</h1>
             <h1>Email: gosho@gosho.com</h1>
-            {/* {% if fullname %} */}
-                <h1>Name: Gosho Goshov</h1>
         </div>
-        <div class="actionBtn">
-            <a href="{% url 'edit user' pk=request.user.pk %}" class="remove">Edit</a>
-            <a href="{% url 'liked products'%}" class="remove">My products</a>
+        <div className="actionBtn">
+            <a href="{% url 'edit user' pk=request.user.pk %}" className="remove">Edit</a>
+            <a href="{% url 'liked products'%}" className="remove">My products</a>
         </div>
-        <div class="actionBtnDelete">
+        <div className="actionBtnDelete">
             <a href="{% url 'delete user' pk=request.user.pk %}">Delete</a>
         </div>
     </div>

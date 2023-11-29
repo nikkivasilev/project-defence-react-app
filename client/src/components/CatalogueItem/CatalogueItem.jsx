@@ -14,7 +14,7 @@ export default function CatalogueItem(props) {
                             <p className="name">Name: {props.name}</p>
                             <p className="price">Price: {props.price} BGN</p>
                         </div>
-                        <div onClick='' className="btn-group">
+                        <div className="btn-group">
                             <Link to={productUrl}>Details</Link>
                         </div>
                     </div>

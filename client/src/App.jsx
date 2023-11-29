@@ -1,11 +1,10 @@
-import {Routes, Route, useNavigate} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import { useState, useEffect } from "react";
 
-import * as authService from './services/authService';
-import AuthContext from './contexts/authContext';
+import {AuthProvider} from './contexts/authContext';
 import Path from './paths';
 
-
+import AuthGuard from "./components/guards/AuthGuard"
 import Header from "./components/Header/Header"
 import Home from './components/Home/Home'
 import Footer from './components/Footer/Footer'
@@ -15,8 +14,9 @@ import ProductDetails from './components/ProductDetails/ProductDetails'
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import Register from './components/register/Register';
+import ProductCreate from './components/ProductCreate/ProductCreate';
 
-const baseUrl = 'http://localhost:3030/jsonstore'
+const baseUrl = 'http://localhost:3030/data'
 
 function App() {
     const [products, setProducts] = useState([])
@@ -31,66 +31,30 @@ function App() {
     }, [])
 
 
-    const navigate = useNavigate();
-    const [auth, setAuth] = useState(() => {
-        localStorage.removeItem('accessToken');
-
-        return {};
-    });
-
-    const loginSubmitHandler = async (values) => {
-        const result = await authService.login(values.email, values.password);
-
-        setAuth(result);
-
-        localStorage.setItem('accessToken', result.accessToken);
-
-        navigate(Path.Home);
-    };
-
-    const registerSubmitHandler = async (values) => {
-        const result = await authService.register(values.email, values.password);
-
-        setAuth(result);
-
-        localStorage.setItem('accessToken', result.accessToken);
-
-        navigate(Path.Home);
-    };
-
-    const logoutHandler = () => {
-        setAuth({});
-
-        localStorage.removeItem('accessToken');
-    };
-
-    const values = {
-        loginSubmitHandler,
-        registerSubmitHandler,
-        logoutHandler,
-        username: auth.username || auth.email,
-        email: auth.email,
-        isAuthenticated: !!auth.accessToken,
-    };
+    
 
   return (
-    <AuthContext.Provider value={values}>
+    <AuthProvider>
     <>
       <Header />
 
       <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path={Path.Home} element={<Home />}/>
         <Route path='/catalogue' element={<Catalogue products={products}/>}/>
         <Route path='user/details' element={<UserDetails />} />
-        <Route path='product/details/:pk' element={<ProductDetails products={products}/>} />
+        <Route path='product/details/:productId' element={<ProductDetails products={products}/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path={Path.Logout} element={<Logout />} />
+        <Route element={<AuthGuard />}>
+                <Route path="/product/create" element={<ProductCreate />} />
+                {/* <Route path={Path.ProductEdit} element={<ProductEdit />} /> */}
+                <Route path={Path.Logout} element={<Logout />} />
+        </Route>
       </Routes>
 
       <Footer />
     </>
-    </AuthContext.Provider>
+    </AuthProvider>
   )
 }
 
