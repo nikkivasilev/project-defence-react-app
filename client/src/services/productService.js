@@ -26,4 +26,7 @@ export const edit = async (productId, productData) => {
     return result;
 };
 
-export const remove = async (productId) => request.remove(`${baseUrl}/${productId}`);
+export const remove = async (productId) => {
+    
+    request.remove(`${baseUrl}/${productId}`)
+};

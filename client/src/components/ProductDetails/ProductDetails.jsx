@@ -17,6 +17,8 @@ export default function ProductDetails() {
     const [comments, dispatch] = useReducer(reducer, []);
     const { productId } = useParams();
 
+    console.log(userId);   
+    
     useEffect(() => {
         productService.getOne(productId)
             .then(setProduct);
@@ -50,7 +52,7 @@ export default function ProductDetails() {
         if (hasConfirmed) {
             await productService.remove(productId);
 
-            navigate('/products');
+            navigate('/catalogue');
         }
     }
 
