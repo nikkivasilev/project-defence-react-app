@@ -15,6 +15,7 @@ import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
 import Register from './components/register/Register';
 import ProductCreate from './components/ProductCreate/ProductCreate';
+import ProductEdit from './components/productEdit/productEdit';
 
 const baseUrl = 'http://localhost:3030/data'
 
@@ -29,7 +30,6 @@ function App() {
         setProducts(result)
           })
     }, [])
-
 
     
 
@@ -46,7 +46,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route element={<AuthGuard />}>
                 <Route path="/product/create" element={<ProductCreate />} />
-                {/* <Route path={Path.ProductEdit} element={<ProductEdit />} /> */}
+                <Route path={Path.ProductEdit} element={<ProductEdit />} />
                 <Route path='user/details' element={<UserDetails />} />
                 <Route path={Path.Logout} element={<Logout />} />
         </Route>

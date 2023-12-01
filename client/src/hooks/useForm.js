@@ -2,6 +2,7 @@ import { useState } from "react"
 
 export default function useForm(submitHandler, initialValues) {
     const [values, setValues] = useState(initialValues);
+    const [formValid, setFormValid] = useState(false)
 
     const onChange = (e) => {
         setValues(state => ({
@@ -12,6 +13,12 @@ export default function useForm(submitHandler, initialValues) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        
+        if (Object.values(values).includes('')) {
+            setFormValid(true)
+            return ''
+        }
+        setFormValid(false)
 
         submitHandler(values);
     };
@@ -20,5 +27,6 @@ export default function useForm(submitHandler, initialValues) {
         values,
         onChange,
         onSubmit,
+        formValid,
     }
 }

@@ -1,0 +1,7 @@
+export const valueIsNull = (value) => {
+    if (!value){
+        return true
+    }
+    else false
+
+}

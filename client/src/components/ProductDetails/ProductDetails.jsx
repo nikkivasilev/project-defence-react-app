@@ -7,6 +7,7 @@ import AuthContext from "../../contexts/authContext";
 import reducer from './commentReducer';
 import useForm from '../../hooks/useForm';
 import { pathToUrl } from "../../utils/pathUtils";
+import { valueIsNull } from "../../utils/validationUtils"
 import Path from "../../paths";
 
 
@@ -16,8 +17,6 @@ export default function ProductDetails() {
     const [product, setProduct] = useState({});
     const [comments, dispatch] = useReducer(reducer, []);
     const { productId } = useParams();
-
-    console.log(userId);   
     
     useEffect(() => {
         productService.getOne(productId)
@@ -32,7 +31,10 @@ export default function ProductDetails() {
             });
     }, [productId]);
 
+
     const addCommentHandler = async (values) => {
+        
+
         const newComment = await commentService.create(
             productId,
             values.comment
@@ -56,7 +58,7 @@ export default function ProductDetails() {
         }
     }
 
-    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
+    const { values, onChange, onSubmit, formValid } = useForm(addCommentHandler, {
         comment: '',
     });
 
@@ -91,6 +93,8 @@ export default function ProductDetails() {
             <form className="actionBtn" onSubmit={onSubmit}>
                 <label className="commentText">
                 <textarea name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"></textarea>
+                {formValid && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
+
                     <button className="register" type="submit">Add Comment</button>
                 </label>
             </form>
