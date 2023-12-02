@@ -17,22 +17,8 @@ import Register from './components/register/Register';
 import ProductCreate from './components/ProductCreate/ProductCreate';
 import ProductEdit from './components/productEdit/productEdit';
 
-const baseUrl = 'http://localhost:3030/data'
 
 function App() {
-    const [products, setProducts] = useState([])
-
-    useEffect(() => {
-        fetch(`${baseUrl}/products`)
-            .then(res => res.json())
-            .then(result => {
-        result = Object.values(result)
-        setProducts(result)
-          })
-    }, [])
-
-    
-
   return (
     <AuthProvider>
     <>
@@ -40,8 +26,8 @@ function App() {
 
       <Routes>
         <Route path={Path.Home} element={<Home />}/>
-        <Route path='/catalogue' element={<Catalogue products={products}/>}/>
-        <Route path='product/details/:productId' element={<ProductDetails products={products}/>} />
+        <Route path='/catalogue' element={<Catalogue/>}/>
+        <Route path='product/details/:productId' element={<ProductDetails/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route element={<AuthGuard />}>

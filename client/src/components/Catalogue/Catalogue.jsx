@@ -1,11 +1,20 @@
+import { useEffect, useState } from "react"
 import CatalogueItem from "../CatalogueItem/CatalogueItem"
+import {getAll} from "../../services/productService"
 
-export default function Catalogue(products) {
+export default function Catalogue() {
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        getAll()
+            .then(setProducts);
+    }, []);
+
     return (
         <section id="catalogPage">
-         {products.products.length > 0 ? ( 
+         {products.length > 0 ? ( 
             <>  
-                {products.products.map(x => <CatalogueItem key={x._id} {...x}/>)}
+                {products.map(x => <CatalogueItem key={x._id} {...x}/>)}
             </>
         ) : <> <p>No Products in Catalog!</p>   </>
     
