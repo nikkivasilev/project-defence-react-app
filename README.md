@@ -1,26 +1,41 @@
+# Magazin Slunce
+## What is the project about?
+...
+## How to start the project:
 1. Clone the repository:
- `  git clone https://github.com/nikkivasilev/project-defence-react-app.git`
-   
+<pre>
+ git clone https://github.com/nikkivasilev/project-defence-react-app.git
+</pre>  
 2. Change into the project directory:
 
-`cd project-defence-react-app`
-
-4. Install dependencies for the client:
-
-`cd client
-npm install`
+<pre>
+ cd project-defence-react-app
+</pre>
+ 
+3. Install dependencies for the client:
+   
+<pre>
+cd client
+npm install
+</pre>
 
 4. Start the Node server in terminal:
-5. 
-`cd server
-node .\server.js`
+   
+<pre>
+cd server
+node .\server.js
+</pre>
 
 *Open another terminal window and navigate to the client directory*
 
-`cd client`
+<pre>
+cd client
+</pre>
 
 5. Start the React app:
+   
+<pre>
+npm run dev
+</pre>
 
-`npm run dev`
-
-*The app should open in your default web browser*.
+*The app should open in your default web browser at http://localhost:5173/*.
