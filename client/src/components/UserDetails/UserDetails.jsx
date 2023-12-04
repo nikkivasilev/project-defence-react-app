@@ -18,19 +18,18 @@ export default function UserDetails() {
     // }
 
     return (
-        <div className="wrapper">
+    <div className="wrapper">
         <div className="profileText">
-            {username !== email && 
+            {username && 
             <h1>Username: {username}</h1>
             }
-            {username === email &&
-            <h1>Username: No username</h1>
-            }
+            
             <h1>Email: {email}</h1>
         </div>
-        <div className="actionBtn">
+        
+        {/* <div className="actionBtn">
         <Link to={pathToUrl(Path.UserEdit, { userId })} className="button">Edit</Link>
-        </div>
+        </div> */}
         {/* <div className="actionBtnDelete">
             <button onClick={deleteButtonClickHandler}>Delete</button>
         </div> */}

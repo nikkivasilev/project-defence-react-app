@@ -16,4 +16,10 @@ export const register = (email, password) => request.post(`${baseUrl}/register`,
     password,
 });
 
+export const edit = async (userData) => {
+    const result = await request.put(`${baseUrl}/${userId}`, userData);
+
+    return result;
+};
+
 export const logout = () => request.get(`${baseUrl}/logout`);
