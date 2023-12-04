@@ -34,17 +34,18 @@ export const AuthProvider = ({
         navigate(Path.Home);
     };
 
+
     const logoutHandler = () => {
         setAuth({});
 
         localStorage.removeItem('accessToken');
     };
-
+    
     const values = {
         loginSubmitHandler,
         registerSubmitHandler,
         logoutHandler,
-        username: auth.username || auth.email,
+        username: auth.username,
         email: auth.email,
         userId: auth._id,
         isAuthenticated: !!auth.accessToken,

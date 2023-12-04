@@ -7,7 +7,6 @@ import AuthContext from "../../contexts/authContext";
 import reducer from './commentReducer';
 import useForm from '../../hooks/useForm';
 import { pathToUrl } from "../../utils/pathUtils";
-import { valueIsNull } from "../../utils/validationUtils"
 import Path from "../../paths";
 
 
@@ -17,7 +16,7 @@ export default function ProductDetails() {
     const [product, setProduct] = useState({});
     const [comments, dispatch] = useReducer(reducer, []);
     const { productId } = useParams();
-    
+
     useEffect(() => {
         productService.getOne(productId)
             .then(setProduct);
@@ -46,6 +45,7 @@ export default function ProductDetails() {
             type: 'ADD_COMMENT',
             payload: newComment
         })
+        
     }
 
     const deleteButtonClickHandler = async () => {

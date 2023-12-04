@@ -24,7 +24,6 @@ export default function ProductEdit() {
         e.preventDefault();
 
         const values = Object.fromEntries(new FormData(e.currentTarget));
-
         try {
             await productService.edit(productId, values);
 
@@ -57,8 +56,8 @@ export default function ProductEdit() {
                     <label htmlFor="name">Name:</label>
                     <input value={product.name} onChange={onChange} type="text" id="name" name="name" placeholder="Enter product name..." />
 
-                    <label htmlFor="image-url">ImageUrl:</label>
-                    <input key={product.imageUrl} type="text" id="image-url" name="image-url" value={product.imageUrl} onChange={onChange} placeholder="Enter product Image Url..." />
+                    <label htmlFor="image-url">Image Url:</label>
+                    <input value={product.imageUrl} onChange={onChange} type="text" id="image-url" name="imageUrl" placeholder="Enter product Image Url..." />
 
                     <label htmlFor="price">Price:</label>
                     <input value={product.price} onChange={onChange} type="number" id="price" name="price" placeholder='Enter price'/>

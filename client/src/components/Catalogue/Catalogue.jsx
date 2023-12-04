@@ -7,14 +7,17 @@ export default function Catalogue() {
 
     useEffect(() => {
         getAll()
-            .then(setProducts);
+        .then(result => setProducts(result))
+        .catch(err => {
+            console.log(err);
+        });
     }, []);
 
     return (
         <section id="catalogPage">
          {products.length > 0 ? ( 
             <>  
-                {products.map(x => <CatalogueItem key={x._id} {...x}/>)}
+                {products.map(product => <CatalogueItem key={product._id} {...product}/>)}
             </>
         ) : <> <p>No Products in Catalog!</p>   </>
     
