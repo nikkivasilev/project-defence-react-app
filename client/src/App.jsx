@@ -16,7 +16,6 @@ import Logout from './components/Logout/Logout';
 import Register from './components/register/Register';
 import ProductCreate from './components/ProductCreate/ProductCreate';
 import ProductEdit from './components/productEdit/productEdit';
-import UserEdit from './components/UserEdit/UserEdit';
 
 
 function App() {
@@ -35,7 +34,6 @@ function App() {
                 <Route path="/product/create" element={<ProductCreate />} />
                 <Route path={Path.ProductEdit} element={<ProductEdit />} />
                 <Route path='user/details' element={<UserDetails />} />
-                {/* <Route path='user/edit' element={<UserEdit />} /> */}
                 <Route path={Path.Logout} element={<Logout />} />
         </Route>
       </Routes>
