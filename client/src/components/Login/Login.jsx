@@ -11,10 +11,13 @@ const LoginFormKeys = {
 
 export default function Login() {
     const { loginSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    const { values, onChange, onSubmit, formValid } = useForm(loginSubmitHandler, {
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
     });
+
+
+
     return (
         <div className="container-inline">
         <section id="welcomePage">
@@ -48,6 +51,7 @@ export default function Login() {
                         onChange={onChange}
                         value={values[LoginFormKeys.Password]}
                     />
+                    {formValid && <p style={{color: 'red'}}>Empty fields are not allowed!</p>}
                     <button type="submit" className="register">Enter</button>
                     <h3>Don't have an account?</h3>
                     <Link className="register" to='/register'>Click here!</Link>

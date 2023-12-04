@@ -13,7 +13,7 @@ const RegisterFormKeys = {
 
 export default function Register() {
     const { registerSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+    const { values, onChange, onSubmit, formValid } = useForm(registerSubmitHandler, {
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',
         [RegisterFormKeys.ConfirmPassword]: '',
@@ -58,7 +58,7 @@ export default function Register() {
                         onChange={onChange}
                         values={values[RegisterFormKeys.ConfirmPassword]}
                     />
-
+                    {formValid && <p style={{color: 'red'}}>Empty fields are not allowed!</p>}
                     <button type="submit" className="register">Enter</button>
                     <h3>Have an account?</h3>
                 <Link className="register" to="/login">Click here!</Link>
