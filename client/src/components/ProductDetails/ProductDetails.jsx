@@ -14,9 +14,12 @@ export default function ProductDetails() {
     const navigate = useNavigate();
     const { email, userId, isAuthenticated } = useContext(AuthContext);
     const [product, setProduct] = useState({});
+    const [edit, setEdit] = useState(false);
+    const [editComment, setEditComment] = useState({});
+    const [formValidEdit, setFormValidEdit] = useState(true);
     const [comments, dispatch] = useReducer(reducer, []);
     const { productId } = useParams();
-
+    
     useEffect(() => {
         productService.getOne(productId)
             .then(setProduct);
@@ -43,25 +46,14 @@ export default function ProductDetails() {
             type: 'ADD_COMMENT',
             payload: newComment
         })
+        
+        
 
     }
 
     const deleteCommentHandler = async (e) => {
         const commentId = e.target.parentElement.id
         await commentService.remove(commentId);
-        
-        commentService.getAll(productId)
-            .then((result) => {
-                dispatch({
-                    type: 'GET_ALL_COMMENTS',
-                    payload: result,
-                });
-            });
-    }
-
-    const editCommentHandler = async (e) => {
-        const commentId = e.target.parentElement.id
-        // TODO: HAVE TO IMPLEMENT LOGIC
         
         commentService.getAll(productId)
             .then((result) => {
@@ -88,6 +80,44 @@ export default function ProductDetails() {
     const { values, onChange, onSubmit, formValid } = useForm(addCommentHandler, {
         comment: '',
     });
+
+    const editCommentClickHandler = async (e) => {
+        const commentId = e.target.parentElement.id
+        commentService.getOne(commentId)
+            .then(result => {
+                setEditComment(result)
+                setEdit(true)
+            })
+        
+    }
+
+
+    const editCommentHandler = async (e) => {
+        e.preventDefault();
+
+        console.log(editComment);
+        await commentService.edit(editComment)
+            .then((result) => {
+                dispatch({
+                    type: 'EDIT_COMMENT',
+                    payload: result,
+                });
+                setEditComment({})
+                setEdit(false)
+            }).catch((error) => {
+                setEditComment({})
+                setEdit(false)
+                throw error
+            })
+
+    }
+
+    const onChangeEdit = (e) => {
+        setEditComment(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }));
+    };
 
     return (
         <section id="detailsPage">
@@ -116,13 +146,26 @@ export default function ProductDetails() {
         </div>
         <div className="commentswrapper">
             {isAuthenticated && (
+                <>
+                {!edit ? 
             <form className="actionBtn" onSubmit={onSubmit}>
                 <label className="commentText">
-                <textarea name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"></textarea>
+                <textarea id='add-comment' name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"></textarea>
                 {!formValid && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
                     <button className="register" type="submit">Add Comment</button>
                 </label>
             </form>
+                 : 
+            <form className="actionBtn" onSubmit={editCommentHandler}>
+                 <label className="commentText">
+                 <textarea name="text" value={editComment.text} onChange={onChangeEdit} placeholder="Comment......"></textarea>
+                 {!formValidEdit && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
+                     <button className="register" type="submit">Edit Comment</button>
+                 </label>
+             </form>   
+                    
+                }
+                </>
             )}
             <ul>
                     {comments.map(({ _id, text, owner }) => (
@@ -131,7 +174,7 @@ export default function ProductDetails() {
                             {email===owner.email &&
                             <>
                             <button className="delete" onClick={deleteCommentHandler}> DELETE</button>
-                            <button className="edit" onClick={editCommentHandler}> EDIT</button>
+                            <button className="edit" onClick={editCommentClickHandler}> EDIT</button>
                             </>
                             }
                         </li>
