@@ -32,8 +32,6 @@ export default function ProductDetails() {
 
 
     const addCommentHandler = async (values) => {
-        
-
         const newComment = await commentService.create(
             productId,
             values.comment
@@ -45,8 +43,35 @@ export default function ProductDetails() {
             type: 'ADD_COMMENT',
             payload: newComment
         })
-        
+
     }
+
+    const deleteCommentHandler = async (e) => {
+        const commentId = e.target.parentElement.id
+        await commentService.remove(commentId);
+        
+        commentService.getAll(productId)
+            .then((result) => {
+                dispatch({
+                    type: 'GET_ALL_COMMENTS',
+                    payload: result,
+                });
+            });
+    }
+
+    const editCommentHandler = async (e) => {
+        const commentId = e.target.parentElement.id
+        // TODO: HAVE TO IMPLEMENT LOGIC
+        
+        commentService.getAll(productId)
+            .then((result) => {
+                dispatch({
+                    type: 'GET_ALL_COMMENTS',
+                    payload: result,
+                });
+            });
+    }
+    
 
     const deleteButtonClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete ${product.title}`);
@@ -57,6 +82,8 @@ export default function ProductDetails() {
             navigate('/catalogue');
         }
     }
+
+    
 
     const { values, onChange, onSubmit, formValid } = useForm(addCommentHandler, {
         comment: '',
@@ -101,8 +128,11 @@ export default function ProductDetails() {
             )}
             <ul>
                     {comments.map(({ _id, text, owner: { email } }) => (
-                        <li key={_id} className="comment">
-                            <p>{email}: {text}</p>
+                        <li id={_id} key={_id} className="comment">
+                            <p>{email}: {text} </p> 
+                            <button className="delete" onClick={deleteCommentHandler}> DELETE</button>
+                            <button className="delete" onClick={editCommentHandler}> EDIT</button>
+                            
                         </li>
                     ))}
             </ul>

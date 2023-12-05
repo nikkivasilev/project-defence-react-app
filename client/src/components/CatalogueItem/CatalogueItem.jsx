@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 export default function CatalogueItem(props) {
     const productUrl = `/product/details/${props._id}`
-    console.log(props);
     return (
         <div className="card-box">
                     {props.imageUrl ? 
