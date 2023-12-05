@@ -95,7 +95,7 @@ export default function ProductDetails() {
     const editCommentHandler = async (e) => {
         e.preventDefault();
 
-        console.log(editComment);
+        
         await commentService.edit(editComment)
             .then((result) => {
                 dispatch({

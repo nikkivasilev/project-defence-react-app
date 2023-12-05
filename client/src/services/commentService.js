@@ -32,6 +32,9 @@ export const create = async (productId, text) => {
 export const edit = async (comment) => {
     const commentId = comment._id
     const text = comment.text
+    if (!text) {
+        throw "Empty fields are not allowed!"
+    }
     const result = await request.put(`${baseUrl}/${commentId}`, {
         text
     });
