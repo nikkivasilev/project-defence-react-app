@@ -13,25 +13,60 @@ export const AuthProvider = ({
 }) => {
     const navigate = useNavigate();
     const [auth, setAuth] = usePersistedState('auth', {});
+    const [errorMessages, setErrorMessages] = useState({
+        login: '',
+        register: ''
+    })
+
 
     const loginSubmitHandler = async (values) => {
-        const result = await authService.login(values.email, values.password);
+        try {
+            const result = await authService.login(values.email, values.password);
 
-        setAuth(result);
+            setAuth(result);
+            setErrorMessages(state => ({
+                ...state,
+                login: ''
+            }))
+            
+            localStorage.setItem('accessToken', result.accessToken);
+            
+            navigate(Path.Home);
 
-        localStorage.setItem('accessToken', result.accessToken);
+        } catch (error) {
+            const errorMessage = error.message
+            setErrorMessages(state => ({
+                ...state,
+                login: errorMessage
+            }))
+        }
 
-        navigate(Path.Home);
     };
 
     const registerSubmitHandler = async (values) => {
+        try {
+            
         const result = await authService.register(values.email, values.password, values.username, values.profilePictureUrl);
 
         setAuth(result);
+        setErrorMessages(state => ({
+            ...state,
+            register: 'errorMessage'
+        }))
 
         localStorage.setItem('accessToken', result.accessToken);
 
         navigate(Path.Home);
+
+        } catch (error) {
+            const errorMessage = error.message
+            setErrorMessages(state => ({
+                ...state,
+                register: errorMessage
+            }))
+        }
+    
+    
     };
 
 
@@ -50,6 +85,7 @@ export const AuthProvider = ({
         userId: auth._id,
         profilePictureUrl: auth.profilePictureUrl,
         isAuthenticated: !!auth.accessToken,
+        errorMessages: errorMessages,
     };
     return (
         <AuthContext.Provider value={values}>

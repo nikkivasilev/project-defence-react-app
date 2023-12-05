@@ -14,13 +14,12 @@ const RegisterFormKeys = {
 };
 
 export default function Register() {
-    const { registerSubmitHandler } = useContext(AuthContext);
+    const { registerSubmitHandler , errorMessages} = useContext(AuthContext);
     const { values, onChange, onSubmit, formValid } = useForm(registerSubmitHandler, {
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Username]: '',
         [RegisterFormKeys.ProfilePictureUrl]: '',
         [RegisterFormKeys.Password]: '',
-        [RegisterFormKeys.ConfirmPassword]: '',
 
     });
 
@@ -50,7 +49,7 @@ export default function Register() {
                         type="text"
                         id="username"
                         name="username"
-                        placeholder="nikkivasilev"
+                        placeholder="nikki"
                         onChange={onChange}
                         values={values[RegisterFormKeys.Username]}
                     />
@@ -72,15 +71,8 @@ export default function Register() {
                         values={values[RegisterFormKeys.Password]}
                     />
 
-                    <label htmlFor="con-pass">Confirm Password:</label>
-                    <input
-                        type="password"
-                        name="confirm-password"
-                        id="confirm-password"
-                        onChange={onChange}
-                        values={values[RegisterFormKeys.ConfirmPassword]}
-                    />
-                    {formValid && <p style={{color: 'red'}}>Empty fields are not allowed!</p>}
+                    {!formValid && <p style={{color: 'red'}}>Empty fields are not allowed!</p>}
+                    {errorMessages.register && <p style={{color: 'red'}}>{errorMessages.register}</p>}
                     <button type="submit" className="register">Enter</button>
                     <h3>Have an account?</h3>
                 <Link className="register" to="/login">Click here!</Link>
