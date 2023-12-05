@@ -7,6 +7,8 @@ import Login from "../Login/Login";
 
 const RegisterFormKeys = {
     Email: 'email',
+    Username: 'username',
+    ProfilePictureUrl: 'profilePictureUrl',
     Password: 'password',
     ConfirmPassword: 'confirm-password',
 };
@@ -15,8 +17,11 @@ export default function Register() {
     const { registerSubmitHandler } = useContext(AuthContext);
     const { values, onChange, onSubmit, formValid } = useForm(registerSubmitHandler, {
         [RegisterFormKeys.Email]: '',
+        [RegisterFormKeys.Username]: '',
+        [RegisterFormKeys.ProfilePictureUrl]: '',
         [RegisterFormKeys.Password]: '',
         [RegisterFormKeys.ConfirmPassword]: '',
+
     });
 
     return(
@@ -36,9 +41,26 @@ export default function Register() {
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="maria@email.com"
+                        placeholder="n.vasilev105@gmail.com"
                         onChange={onChange}
                         values={values[RegisterFormKeys.Email]}
+                    />
+                <label htmlFor="username">Username:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="nikkivasilev"
+                        onChange={onChange}
+                        values={values[RegisterFormKeys.Username]}
+                    />
+                <label htmlFor="profilePictureUrl">Profile Picture Url:</label>
+                    <input
+                        type="text"
+                        id="profilePictureUrl"
+                        name="profilePictureUrl"
+                        onChange={onChange}
+                        values={values[RegisterFormKeys.ProfilePictureUrl]}
                     />
 
                     <label htmlFor="pass">Password:</label>
