@@ -97,15 +97,14 @@ export default function ProductDetails() {
             </div>
             <div className="albumInfo">
                 <div className="albumText">
-                    <h1 className="albumText">Name:  {product.name}</h1>
-                    <h1 className="albumText">Price:  {product.price} BNG</h1>
+                    <h1 className="albumText">Name: {product.name}</h1>
+                    <h1 className="albumText">Price: {product.price} BNG</h1>
                     {product.description &&
                     <>
                         <p className="albumText">Description: {product.description}</p>
                         </>
                     }
                 </div>
-                
                     {userId === product._ownerId && (
                     <div className="actionBtn">
                         <Link to={pathToUrl(Path.ProductEdit, { productId })} className="button">Edit</Link>
@@ -120,19 +119,21 @@ export default function ProductDetails() {
             <form className="actionBtn" onSubmit={onSubmit}>
                 <label className="commentText">
                 <textarea name="comment" value={values.comment} onChange={onChange} placeholder="Comment......"></textarea>
-                {formValid && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
-
+                {!formValid && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
                     <button className="register" type="submit">Add Comment</button>
                 </label>
             </form>
             )}
             <ul>
-                    {comments.map(({ _id, text, owner: { email } }) => (
+                    {comments.map(({ _id, text, owner }) => (
                         <li id={_id} key={_id} className="comment">
-                            <p>{email}: {text} </p> 
+                            <p>{owner.email}: {text} </p> 
+                            {email===owner.email &&
+                            <>
                             <button className="delete" onClick={deleteCommentHandler}> DELETE</button>
-                            <button className="delete" onClick={editCommentHandler}> EDIT</button>
-                            
+                            <button className="edit" onClick={editCommentHandler}> EDIT</button>
+                            </>
+                            }
                         </li>
                     ))}
             </ul>
