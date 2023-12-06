@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export default function ProductEdit() {
     const navigate = useNavigate();
     const { productId } = useParams();
+    const [errorMessage, setErrorMessage] = useState('')
     const [product, setProduct] = useState({
         name: '',
         imageUrl: '',
@@ -29,8 +30,7 @@ export default function ProductEdit() {
 
             navigate('/catalogue');
         } catch (err) {
-            // Error notification
-            console.log(err);
+            setErrorMessage(err)
         }
     }
 
@@ -64,6 +64,8 @@ export default function ProductEdit() {
 
                     <label htmlFor="description">Description:</label>
                     <input value={product.description} onChange={onChange} type="text" id="description" name="description" placeholder="Enter product description..." />
+                    
+                    {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
 
                     <input className="register" type="submit" value="Edit product" />
 

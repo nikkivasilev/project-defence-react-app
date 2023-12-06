@@ -1,10 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
 import * as productService from '../../services/productService';
+import { useState } from 'react';
 
 export default function ProductCreate() {
     const navigate = useNavigate();
-    
+    const [errorMessage, setErrorMessage] = useState('')
+
+
     const createProductSubmitHandler = async (e) => {
         e.preventDefault();
 
@@ -15,8 +18,7 @@ export default function ProductCreate() {
 
             navigate('/catalogue');
         } catch (err) {
-            // Error notification
-            console.log(err);
+            setErrorMessage(err)
         }
     }
 
@@ -43,9 +45,8 @@ export default function ProductCreate() {
 
                     <label htmlFor="description">Description:</label>
                     <input type="text" id="description" name="description" placeholder="Enter product description..." />
-
+                    {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
                     <input className="register" type="submit" value="Create product" />
-
                 </form>
             </fieldset>
 

@@ -15,12 +15,19 @@ export const getOne = async (productId) => {
 }
 
 export const create = async (productData) => {
+    if (Object.values(productData).includes('')) {
+        throw 'Empty fields are not allowed!'
+    }
+
     const result = await request.post(baseUrl, productData);
 
     return result;
 };
 
 export const edit = async (productId, productData) => {
+    if (Object.values(productData).includes('')) {
+        throw 'Empty fields are not allowed!'
+    }
     const result = await request.put(`${baseUrl}/${productId}`, productData);
 
     return result;
