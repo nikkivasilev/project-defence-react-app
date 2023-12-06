@@ -9,9 +9,13 @@ export const getAll = async () => {
 };
 
 export const getOne = async (productId) => {
-    const result = await request.get(`${baseUrl}/${productId}`, );
-
-    return result;
+    try {
+        const result = await request.get(`${baseUrl}/${productId}`, );
+        return result;
+    } catch (error) {
+        throw error.message
+    }
+    
 }
 
 export const create = async (productData) => {

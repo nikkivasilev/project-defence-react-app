@@ -16,13 +16,17 @@ export default function ProductDetails() {
     const [product, setProduct] = useState({});
     const [edit, setEdit] = useState(false);
     const [editComment, setEditComment] = useState({});
-    const [formValidEdit, setFormValidEdit] = useState(true);
+    // const [formValidEdit, setFormValidEdit] = useState(true);
     const [comments, dispatch] = useReducer(reducer, []);
     const { productId } = useParams();
     
     useEffect(() => {
+
         productService.getOne(productId)
-            .then(setProduct);
+            .then(setProduct)
+            .catch((err) => {
+                navigate('/catalogue')
+            })
 
         commentService.getAll(productId)
             .then((result) => {
@@ -157,7 +161,7 @@ export default function ProductDetails() {
             <form className="actionBtn" onSubmit={editCommentHandler}>
                  <label className="commentText">
                  <textarea name="text" value={editComment.text} onChange={onChangeEdit} placeholder="Comment......"></textarea>
-                 {!formValidEdit && <p style={{color: 'red'}}>Comment must not be an empty string!</p>}
+                 {/* {!formValidEdit && <p style={{color: 'red'}}>Comment must not be an empty string!</p>} */}
                      <button className="register" type="submit">Edit Comment</button>
                  </label>
              </form>   

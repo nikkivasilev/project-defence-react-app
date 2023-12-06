@@ -1,10 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as productService from '../../services/productService';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AuthContext from '../../contexts/authContext';
 
 export default function ProductEdit() {
     const navigate = useNavigate();
+    const { userId } = useContext(AuthContext);
     const { productId } = useParams();
     const [errorMessage, setErrorMessage] = useState('')
     const [product, setProduct] = useState({
@@ -17,8 +19,14 @@ export default function ProductEdit() {
     useEffect(() => {
         productService.getOne(productId)
             .then(result => {
+                if (userId !== result._ownerId) {
+                    navigate('/catalogue')
+                }
                 setProduct(result);
-            });
+            })
+            .catch((err) => {
+                navigate('/catalogue')
+            })
     }, [productId]);
 
     const editProductSubmitHandler = async (e) => {
