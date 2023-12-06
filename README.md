@@ -39,3 +39,12 @@ npm run dev
 </pre>
 
 *The app should open in your default web browser at http://localhost:5173/*.
+
+## Deployment:
+
+The front end is deployed via FireBase and can be accessed at:
+[magazin-slunce.web.app](https://magazin-slunce.web.app/)
+or alternatively 
+[magazin-slunce.firebaseapp.com](https://magazin-slunce.firebaseapp.com/) 
+
+### *To access the deployed app it's necessary to run the node server locally*
