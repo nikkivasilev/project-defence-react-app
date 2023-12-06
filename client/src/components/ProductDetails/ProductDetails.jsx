@@ -54,14 +54,12 @@ export default function ProductDetails() {
     const deleteCommentHandler = async (e) => {
         const commentId = e.target.parentElement.id
         await commentService.remove(commentId);
-        
-        commentService.getAll(productId)
-            .then((result) => {
-                dispatch({
-                    type: 'GET_ALL_COMMENTS',
-                    payload: result,
-                });
-            });
+
+        dispatch({
+            type: 'DELETE_COMMENT',
+            payload: commentId,
+        });
+                
     }
     
 
