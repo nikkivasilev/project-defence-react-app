@@ -175,8 +175,8 @@ export default function ProductDetails() {
                             <p>{owner.email}: {text} </p> 
                             {email===owner.email &&
                             <>
-                            <button className="delete" onClick={deleteCommentHandler}> DELETE</button>
-                            <button className="edit" onClick={editCommentClickHandler}> EDIT</button>
+                            <button className="actionBtnDelete" onClick={deleteCommentHandler}> DELETE</button>
+                            <button id="EditComment" onClick={editCommentClickHandler}> EDIT</button>
                             </>
                             }
                         </li>
