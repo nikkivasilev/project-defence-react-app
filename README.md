@@ -47,4 +47,4 @@ The react app is deployed via FireBase and can be accessed at:
 or alternatively 
 [magazin-slunce.firebaseapp.com](https://magazin-slunce.firebaseapp.com/) 
 
-### *Currently, to access the deployed app, it's necessary to run the node server locally*
+# *The database is deployed via Render.com*
