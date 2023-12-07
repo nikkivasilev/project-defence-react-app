@@ -1359,7 +1359,20 @@
             }
         },
         comments: {
-            
+            "cf74c820-229d-4953-9775-1d2bd9a922e4": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                productId: "457a2c06-b8d8-4468-8c05-a1b88309283e",
+                text: "cool slipers",
+                _createdOn: 1701975484728,
+                _id: "cf74c820-229d-4953-9775-1d2bd9a922e4"
+            },
+            "85817a2f-717b-4d5f-86a7-5558af64cd23": {
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                productId: "457a2c06-b8d8-4468-8c05-a1b88309283e",
+                text: "what is the price?",
+                _createdOn: 1701975494100,
+                _id: "85817a2f-717b-4d5f-86a7-5558af64cd23"
+            }
         },
         
     	
