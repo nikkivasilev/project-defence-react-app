@@ -2,7 +2,7 @@ import * as request from "../lib/request";
 
 const url = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3030'
-    : 'http://localhost:3030' // Add deployed server url
+    : 'https://nikkivasilev-server-exam-deployment.onrender.com' // Add deployed server url
 
 const baseUrl = `${url}/data/products`
 
