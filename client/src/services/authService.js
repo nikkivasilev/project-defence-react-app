@@ -1,6 +1,10 @@
 import * as request from '../lib/request';
 
-const baseUrl = 'http://localhost:3030/users';
+const url = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3030'
+    : 'http://localhost:3030' // Add deployed server url
+
+const baseUrl = `${url}/users`;
 
 export const login = async (email, password) => {
     const result = await request.post(`${baseUrl}/login`, {

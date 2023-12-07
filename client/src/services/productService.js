@@ -1,6 +1,10 @@
 import * as request from "../lib/request";
 
-const baseUrl = 'http://localhost:3030/data/products'
+const url = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3030'
+    : 'http://localhost:3030' // Add deployed server url
+
+const baseUrl = `${url}/data/products`
 
 export const getAll = async () => {
     const result = await request.get(baseUrl);
