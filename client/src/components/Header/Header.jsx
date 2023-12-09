@@ -13,11 +13,12 @@ export default function Header() {
         <img src="/images/contrast.png" alt="sun" />
         <Link to="/">HOME</Link>
         <ul>
-          {isAuthenticated && (
-            <>
-              <li>
+        <li>
                 <Link to="/catalogue">CATALOGUE</Link>
               </li>
+          {isAuthenticated && (
+            <>
+              
               <li>
                 <Link to="/product/create">CREATE PRODUCT</Link>
               </li>
